@@ -1,14 +1,15 @@
 class RandomPasswordGenerator():   
-    def __init__(self):
+    def __init__(self, password_length=25):
         self.__password = ''
-    def __generateRandomPassword(self, password_length=25):
+        self.__password_length = password_length
+    def __generateRandomPassword(self):
         from secrets import choice
         from string import ascii_letters, digits, punctuation
         from random import shuffle
         password_characters = ascii_letters + 2*digits + punctuation
         password_characters_list = list(password_characters)    
         shuffle(password_characters_list)
-        return ''.join(choice(password_characters_list) for i in range(password_length))
+        return ''.join(choice(password_characters_list) for i in range(self.__password_length))
     def generateRandomPassword(self, rounds=10000):
         for i in range(rounds):
             print(f'Round {i}\t{self.__password}')
